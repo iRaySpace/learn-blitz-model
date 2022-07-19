@@ -69,4 +69,14 @@ model Animal {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String
+  count     AnimalCount?
+}
+
+model AnimalCount {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  qty       Int      @default(0)
+  animal    Animal   @relation(fields: [animalId], references: [id])
+  animalId  Int      @unique
 }
